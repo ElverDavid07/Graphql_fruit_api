@@ -4,27 +4,62 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @ObjectType()
 @Schema({ versionKey: false, timestamps: true })
 export class Fruit {
-  @Field({ description: 'id de la fruta' })
+  @Field({ nullable: true })
   readonly _id: string;
-  @Field({ description: 'Nombre de la fruta' })
+
+  @Field()
   @Prop({ isRequired: true, lowercase: true, trim: true })
-  name: string;
-  @Field({ description: 'Familia de la fruta' })
+  nombre: string;
+
+  @Field()
   @Prop({ isRequired: true, lowercase: true, trim: true })
-  family: string;
-  @Field({ description: 'Variedad de la fruta', nullable: true })
-  @Prop({ isRequired: false, lowercase: true, trim: true })
-  variety?: string;
-  @Field({ description: 'Nombre cientifico de la fruta' })
+  familia: string;
+
+  @Field({ nullable: true })
+  @Prop({ lowercase: true, trim: true })
+  variedad?: string;
+
+  @Field()
   @Prop({ isRequired: true, lowercase: true, trim: true })
-  scientificName: string;
-  @Field({ description: 'Descripcion de la fruta' })
+  nombreCientifico: string;
+
+  @Field()
   @Prop({ isRequired: true, lowercase: true, trim: true })
-  description: string;
-  @Field({ description: 'Fecha de creacion de la informacion de la fruta' })
+  descripcion: string;
+
+  @Field({ nullable: true })
+  @Prop({ lowercase: true, trim: true })
+  color: string;
+
+  @Field({ nullable: true })
+  @Prop({ lowercase: true, trim: true })
+  sabor: string;
+
+  @Field({ nullable: true })
+  @Prop({ lowercase: true, trim: true })
+  temporada: string;
+
+  @Field(() => [String])
+  @Prop({ type: [String], lowercase: true, trim: true })
+  metodosDeConsumo: string[];
+
+  @Field(() => [String])
+  @Prop({ type: [String], lowercase: true, trim: true })
+  usosCulinarios: string[];
+
+  @Field({ nullable: true })
+  @Prop({ lowercase: true, trim: true })
+  datosCuriosos: string;
+
+  @Field({
+    description: 'Fecha de creacion de la informacion de la fruta',
+    nullable: true,
+  })
   readonly createdAt: Date;
+
   @Field({
     description: 'Fecha de la actualizacion de la informacion de la fruta',
+    nullable: true,
   })
   readonly updatedAt: Date;
 }

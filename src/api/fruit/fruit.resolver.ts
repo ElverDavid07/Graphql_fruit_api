@@ -8,19 +8,19 @@ import { FruitService } from './fruit.service';
 export class FruitResolver {
   constructor(private readonly fruitService: FruitService) {}
 
-  @Mutation(() => Fruit)
-  createFruit(@Args('createFruitInput') createFruitInput: CreateFruitInput) {
-    return this.fruitService.create(createFruitInput);
-  }
-
-  @Query(() => [Fruit], { name: 'fruit' })
+  @Query(() => [Fruit])
   findAll() {
     return this.fruitService.findAll();
   }
 
-  @Query(() => Fruit, { name: 'fruit' })
+  @Query(() => Fruit)
   findOne(@Args('id') id: string) {
     return this.fruitService.findOne(id);
+  }
+
+  @Mutation(() => Fruit)
+  createFruit(@Args('createFruitInput') createFruitInput: CreateFruitInput) {
+    return this.fruitService.create(createFruitInput);
   }
 
   @Mutation(() => Fruit)

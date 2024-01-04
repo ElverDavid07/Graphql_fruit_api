@@ -10,7 +10,7 @@ export class FruitService {
   constructor(@InjectModel(Fruit.name) private fruitModel: Model<Fruit>) {}
 
   findAll() {
-    return this.fruitModel.find();
+    return this.fruitModel.find().sort({ createdAt: -1 });
   }
 
   async findOne(id: string) {
@@ -23,7 +23,7 @@ export class FruitService {
 
   async create(createFruitInput: CreateFruitInput) {
     const newFruit = await this.fruitModel.create(createFruitInput);
-    return newFruit.save();
+    return await newFruit.save();
   }
 
   async update(id: string, updateFruitInput: UpdateFruitInput) {
@@ -31,7 +31,11 @@ export class FruitService {
     if (!fruitFound) {
       throw new HttpException('Esta fruta no existe!', HttpStatus.NOT_FOUND);
     }
-    await this.fruitModel.findByIdAndUpdate(id, updateFruitInput);
+    const fruidUpdated = await this.fruitModel.findByIdAndUpdate(
+      id,
+      updateFruitInput,
+    );
+    return fruidUpdated;
   }
 
   async remove(id: string) {
@@ -39,6 +43,7 @@ export class FruitService {
     if (!fruitFound) {
       throw new HttpException('Esta fruta no existe!', HttpStatus.NOT_FOUND);
     }
-    await this.fruitModel.findByIdAndDelete(id);
+    const fruidDeleted = await this.fruitModel.findByIdAndDelete(id);
+    return fruidDeleted;
   }
 }

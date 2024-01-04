@@ -3,29 +3,24 @@
 # ------------------------------------------------------
 
 type Fruit {
-  """id de la fruta"""
-  _id: String!
-
-  """Nombre de la fruta"""
-  name: String!
-
-  """Familia de la fruta"""
-  family: String!
-
-  """Variedad de la fruta"""
-  variety: String
-
-  """Nombre cientifico de la fruta"""
-  scientificName: String!
-
-  """Descripcion de la fruta"""
-  description: String!
+  _id: String
+  nombre: String!
+  familia: String!
+  variedad: String
+  nombreCientifico: String!
+  descripcion: String!
+  color: String
+  sabor: String
+  temporada: String
+  metodosDeConsumo: [String!]!
+  usosCulinarios: [String!]!
+  datosCuriosos: String
 
   """Fecha de creacion de la informacion de la fruta"""
-  createdAt: DateTime!
+  createdAt: DateTime
 
   """Fecha de la actualizacion de la informacion de la fruta"""
-  updatedAt: DateTime!
+  updatedAt: DateTime
 }
 
 """
@@ -34,7 +29,8 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  fruit(id: String!): Fruit!
+  findAll: [Fruit!]!
+  findOne(id: String!): Fruit!
 }
 
 type Mutation {
@@ -44,18 +40,30 @@ type Mutation {
 }
 
 input CreateFruitInput {
-  name: String!
-  family: String!
-  variety: String
-  scientificName: String!
-  description: String!
+  nombre: String!
+  familia: String!
+  variedad: String
+  nombreCientifico: String!
+  descripcion: String!
+  color: String!
+  sabor: String!
+  temporada: String!
+  metodosDeConsumo: [String!]!
+  usosCulinarios: [String!]!
+  datosCuriosos: String!
 }
 
 input UpdateFruitInput {
-  name: String!
-  family: String!
-  variety: String
-  scientificName: String!
-  description: String!
+  nombre: String
+  familia: String
+  variedad: String
+  nombreCientifico: String
+  descripcion: String
+  color: String
+  sabor: String
+  temporada: String
+  metodosDeConsumo: [String!]
+  usosCulinarios: [String!]
+  datosCuriosos: String
   _id: String!
 }
