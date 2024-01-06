@@ -24,8 +24,11 @@ export class FruitResolver {
   }
 
   @Mutation(() => Fruit)
-  updateFruit(@Args('updateFruitInput') updateFruitInput: UpdateFruitInput) {
-    return this.fruitService.update(updateFruitInput._id, updateFruitInput);
+  updateFruit(
+    @Args('id') id: string,
+    @Args('updateFruitInput') updateFruitInput: UpdateFruitInput,
+  ) {
+    return this.fruitService.update(id, updateFruitInput);
   }
 
   @Mutation(() => Fruit)

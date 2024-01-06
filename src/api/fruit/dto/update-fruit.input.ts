@@ -4,9 +4,6 @@ import { CreateFruitInput } from './create-fruit.input';
 
 @InputType()
 export class UpdateFruitInput extends PartialType(CreateFruitInput) {
-  @Field()
-  readonly _id: string;
-
   @IsString({ message: 'El nombre debe ser un texto!' })
   @Field({ nullable: true })
   nombre?: string;

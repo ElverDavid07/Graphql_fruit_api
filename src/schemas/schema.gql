@@ -35,7 +35,7 @@ type Query {
 
 type Mutation {
   createFruit(createFruitInput: CreateFruitInput!): Fruit!
-  updateFruit(updateFruitInput: UpdateFruitInput!): Fruit!
+  updateFruit(id: String!, updateFruitInput: UpdateFruitInput!): Fruit!
   removeFruit(id: String!): Fruit!
 }
 
@@ -65,5 +65,4 @@ input UpdateFruitInput {
   metodosDeConsumo: [String!]
   usosCulinarios: [String!]
   datosCuriosos: String
-  _id: String!
 }
